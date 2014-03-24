@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 17.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   width="86px"
+   height="86px"
+   viewBox="0 0 86 86"
+   enable-background="new 0 0 86 86"
+   xml:space="preserve"
+   id="svg3093"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="pwdhash.svg"
+   inkscape:export-filename="C:\Users\rgerlach\Projekte\pwdhash\pwdhash.png"
+   inkscape:export-xdpi="90.632324"
+   inkscape:export-ydpi="90.632324"><metadata
+   id="metadata3118"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs3116"><linearGradient
+   id="linearGradient3923"><stop
+     style="stop-color:#00007f;stop-opacity:1;"
+     offset="0"
+     id="stop3925" /><stop
+     style="stop-color:#00007f;stop-opacity:0;"
+     offset="1"
+     id="stop3927" /></linearGradient>
+	<linearGradient
+   y2="0.7169"
+   x2="85.2831"
+   y1="85.2831"
+   x1="0.7169"
+   gradientUnits="userSpaceOnUse"
+   id="SVGID_1_">
+		<stop
+   id="stop3098"
+   style="stop-color:#000059;stop-opacity:1;"
+   offset="0" />
+		<stop
+   id="stop3100"
+   style="stop-color:#0000c2;stop-opacity:1;"
+   offset="1" />
+	</linearGradient>
+	
+	
+	
+	
+	
+<linearGradient
+   inkscape:collect="always"
+   xlink:href="#SVGID_1_"
+   id="linearGradient3929"
+   x1="0.30000001"
+   y1="43"
+   x2="85.699997"
+   y2="43"
+   gradientUnits="userSpaceOnUse"
+   gradientTransform="matrix(1,0,0,-1,0,86)" /></defs><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1366"
+   inkscape:window-height="705"
+   id="namedview3114"
+   showgrid="false"
+   inkscape:zoom="6.0232558"
+   inkscape:cx="31.622071"
+   inkscape:cy="38.822643"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg3093" />
+<g
+   id="Layer_2"
+   display="none">
+</g>
+<path
+   inkscape:connector-curvature="0"
+   style="fill:url(#linearGradient3929);fill-opacity:1"
+   id="path3102"
+   d="M 84.277,85.7 H 43 C 19.417,85.7 0.3,66.582 0.3,43 V 1.723 C 0.3,0.937 0.937,0.3 1.723,0.3 H 43 c 23.583,0 42.7,19.118 42.7,42.7 v 41.277 c 0,0.786 -0.637,1.423 -1.423,1.423 z" />
+<text
+   xml:space="preserve"
+   style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+   x="18.262548"
+   y="40.177605"
+   id="text3933"
+   sodipodi:linespacing="125%"><tspan
+     sodipodi:role="line"
+     id="tspan3935"
+     x="18.262548"
+     y="40.177605" /></text>
+<text
+   xml:space="preserve"
+   style="font-size:63.05706024px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+   x="6.4221234"
+   y="57.436142"
+   id="text3937"
+   sodipodi:linespacing="125%"
+   transform="scale(1.038298,0.96311464)"><tspan
+     sodipodi:role="line"
+     x="6.4221234"
+     y="57.436142"
+     id="tspan3941">P</tspan></text>
+<text
+   xml:space="preserve"
+   style="font-size:67.45521545px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans Bold"
+   x="30.476757"
+   y="84.928101"
+   id="text3945"
+   sodipodi:linespacing="125%"
+   transform="scale(1.1530611,0.86725674)"><tspan
+     sodipodi:role="line"
+     id="tspan3947"
+     x="30.476757"
+     y="84.928101">#</tspan></text>
+</svg>

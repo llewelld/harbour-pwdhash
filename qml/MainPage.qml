@@ -52,6 +52,7 @@ Page {
                 width: parent.width
                 label: "site address"
                 placeholderText: label
+                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhUrlCharactersOnly | Qt.ImhNoAutoUppercase
                 onTextChanged: PwdHash.domain_changed()
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
@@ -65,6 +66,7 @@ Page {
                 label: "site password"
                 placeholderText: label
                 echoMode: TextInput.Password
+                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
                 onTextChanged: PwdHash.password_changed()
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"

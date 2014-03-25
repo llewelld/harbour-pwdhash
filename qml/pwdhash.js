@@ -25,12 +25,11 @@ USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 .import "password-extractor.js" as PasswordExtractor
 .import "hashed-password.js" as HashedPassword
 
-var domain = "";
 var password = "";
 
 function domain_changed() {
     var value = inputSiteAddress.text;
-    domain = (value) ? DomainExtractor.extractDomain(value) : "";
+    appwin.domain = (value) ? DomainExtractor.extractDomain(value) : "";
     _update_hashed_password();
 }
 
@@ -42,9 +41,9 @@ function password_changed() {
 
 function _update_hashed_password() {
     var hashedPassword = "";
-    if (domain && password)
-        hashedPassword = HashedPassword.getHashedPassword(password, domain);
-    inputHashedPassword.text = hashedPassword;
+    if (appwin.domain && password)
+        hashedPassword = HashedPassword.getHashedPassword(password, appwin.domain);
+    appwin.hash = hashedPassword;
 }
 
 function copy_hashed_password() {

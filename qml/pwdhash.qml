@@ -33,6 +33,11 @@ import "."
 
 ApplicationWindow
 {
+    id: appwin
+
+    property string domain
+    property string hash
+
     initialPage: Component { MainPage { } }
     cover: Qt.resolvedUrl("CoverPage.qml")
 }

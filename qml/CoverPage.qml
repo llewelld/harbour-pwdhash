@@ -31,9 +31,54 @@ import QtQuick 2.0
 import Sailfish.Silica 1.0
 
 CoverBackground {
-    Label {
-        id: label
-        anchors.centerIn: parent
-        text: "pwdhash"
+    id: cover
+
+    CoverPlaceholder {
+        id: placeholder
+        icon.source: "/opt/sdk/pwdhash/usr/share/icons/hicolor/86x86/apps/pwdhash.png"
+        text: (appwin.domain) ? "" : placeholder.height.toString()
     }
+
+    Column {
+        y: 3*Theme.paddingLarge + placeholder.icon.height
+        x: Theme.paddingMedium
+        width: cover.width - 2*x
+        spacing: Theme.paddingSmall
+
+        Label {
+            visible: appwin.domain.length > 0
+            text: "Domain:"
+            color: Theme.secondaryColor
+            width: parent.width
+        }
+
+        Label {
+            visible: appwin.domain.length > 0
+            text: appwin.domain
+            color: Theme.primaryColor
+            wrapMode: Text.NoWrap
+            fontSizeMode: Text.Fit
+            width: parent.width
+        }
+
+/*
+        Label {
+            visible: appwin.hash.length > 0
+            text: "Password:"
+            color: Theme.secondaryColor
+            width: parent.width
+        }
+
+        Label {
+            visible: appwin.hash.length > 0
+            text: appwin.hash
+            color: Theme.primaryColor
+            wrapMode: Text.NoWrap
+            fontSizeMode: Text.Fit
+            width: parent.width
+        }
+*/
+
+    }
+
 }

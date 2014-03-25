@@ -80,6 +80,7 @@ Page {
                 readOnly: true
                 label:  "hashed password (tap to copy)"
                 onClicked: PwdHash.copy_hashed_password()
+                text: appwin.hash
             }
 
         }

@@ -13,17 +13,14 @@ OTHER_FILES += qml/pwdhash.qml \
     qml/scripts/hashed-password.js \
     qml/scripts/domain-extractor.js \
     qml/scripts/password-extractor.js \
-    qml/pwdhash.js \
     qml/cover/main.qml \
     qml/pages/MainPage.qml \
     qml/cover/CoverPage.qml \
     qml/pages/MainPage.qml \
-    qml/pwdhash.js \
     qml/password-extractor.js \
     qml/md5.js \
     qml/hashed-password.js \
     qml/domain-extractor.js \
-    qml/pwdhash.js \
     qml/password-extractor.js \
     qml/md5.js \
     qml/hashed-password.js \

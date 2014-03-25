@@ -61,7 +61,7 @@ CoverBackground {
             width: parent.width
         }
 
-/*
+        /*
         Label {
             visible: appwin.hash.length > 0
             text: "Password:"
@@ -77,7 +77,7 @@ CoverBackground {
             fontSizeMode: Text.Fit
             width: parent.width
         }
-*/
+        */
 
     }
 

@@ -29,11 +29,20 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import "pwdhash.js" as PwdHash
 
+import "domain-extractor.js" as DomainExtractor
+import "password-extractor.js" as PasswordExtractor
+import "hashed-password.js" as HashedPassword
 
 Page {
     id: mainpage
+
+    function _update_hash() {
+        var hashedPassword = "";
+        if (appwin.domain && appwin.password)
+            hashedPassword = HashedPassword.getHashedPassword(appwin.password, appwin.domain);
+        appwin.hash = hashedPassword;
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -53,11 +62,16 @@ Page {
                 label: "site address"
                 placeholderText: label
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhUrlCharactersOnly | Qt.ImhNoAutoUppercase
-                onTextChanged: PwdHash.domain_changed()
+                focus: true;
+
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: inputSitePassword.focus = true
-                focus: true
+
+                onTextChanged: {
+                    appwin.domain = (text) ? DomainExtractor.extractDomain(text) : "";
+                    _update_hash();
+                }
             }
 
             TextField {
@@ -67,26 +81,31 @@ Page {
                 placeholderText: label
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-                onTextChanged: PwdHash.password_changed()
+
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
                 EnterKey.onClicked: PwdHash.copy_hashed_password()
+
+                onTextChanged: {
+                    appwin.password = (text) ? PasswordExtractor.extractPassword(text) : "";
+                    _update_hash();
+                }
             }
 
             TextField {
                 id: inputHashedPassword
-                color: Theme.highlightColor
                 width: parent.width
-                readOnly: true
                 label:  "hashed password (tap to copy)"
-                onClicked: PwdHash.copy_hashed_password()
                 text: appwin.hash
+                color: Theme.highlightColor
+                readOnly: true
+
+                onClicked: {
+                    if (appwin.hash) { selectAll(); copy(); }
+                }
             }
 
         }
-
-
     }
+
 }
-
-

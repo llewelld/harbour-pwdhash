@@ -96,7 +96,7 @@ CoverBackground {
         CoverAction {
             iconSource: "image://theme/icon-l-copy"
             onTriggered: {
-                appwin.activate()
+                Clipboard.text = appwin.hash
             }
         }
     }

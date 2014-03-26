@@ -35,7 +35,7 @@ CoverBackground {
 
     CoverPlaceholder {
         id: placeholder
-        icon.source: "/opt/sdk/pwdhash/usr/share/icons/hicolor/86x86/apps/pwdhash.png"
+        icon.source: "../../icons/hicolor/86x86/apps/harbour-pwdhash.png"
         text: (appwin.domain) ? "" : "pwdhash"
     }
 

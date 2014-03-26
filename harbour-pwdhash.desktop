@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Name=pwdhash
-Icon=pwdhash
-Exec=pwdhash
+Name=harbour-pwdhash
+Icon=harbour-pwdhash
+Exec=harbour-pwdhash
 

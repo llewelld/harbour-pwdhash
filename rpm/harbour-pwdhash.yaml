@@ -1,5 +1,5 @@
-Name: pwdhash
-Summary: pwdhash
+Name: harbour-pwdhash
+Summary: pwdhash.com as an app
 Version: 0.2
 Release: 1
 Group: Qt/Qt
@@ -7,8 +7,8 @@ URL: http://example.org/
 License: GPL, BSD
 Sources:
 - '%{name}-%{version}.tar.bz2'
-Description: |
-  pwdhash.com as an app
+Description: |-
+  PwdHash converts a user's password into a domain-specific password.
 Configure: none
 Builder: qtc5
 PkgConfigBR:
@@ -19,12 +19,12 @@ PkgConfigBR:
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
 Files:
-- /usr/share/icons/hicolor/86x86/apps
-- /usr/share/applications
-- /usr/share/pwdhash
-- /usr/bin
 - '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
 - '%{_datadir}/applications/%{name}.desktop'
 - '%{_datadir}/%{name}/qml'
 - '%{_bindir}'
+- /usr/bin
+- /usr/share/harbour-pwdhash
+- /usr/share/applications
+- /usr/share/icons/hicolor/86x86/apps
 PkgBR: []

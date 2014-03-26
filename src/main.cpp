@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     QGuiApplication *app = SailfishApp::application(argc, argv);
 
     QQuickView *view = SailfishApp::createView();
-    view->setSource(SailfishApp::pathTo("qml/pwdhash.qml"));
+    view->setSource(SailfishApp::pathTo("qml/main.qml"));
     view->show();
 
     QObject::connect((QObject*)view->engine(), SIGNAL(quit()), app, SLOT(quit()));

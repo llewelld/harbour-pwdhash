@@ -36,11 +36,11 @@ CoverBackground {
     CoverPlaceholder {
         id: placeholder
         icon.source: "/opt/sdk/pwdhash/usr/share/icons/hicolor/86x86/apps/pwdhash.png"
-        text: (appwin.domain) ? "" : placeholder.height.toString()
+        text: (appwin.domain) ? "" : "pwdhash"
     }
 
     Column {
-        y: 3*Theme.paddingLarge + placeholder.icon.height
+        y: 2*Theme.paddingLarge + placeholder.icon.height + (appwin.show_hash ? 0 : Theme.paddingLarge)
         x: Theme.paddingMedium
         width: cover.width - 2*x
         spacing: Theme.paddingSmall
@@ -49,6 +49,7 @@ CoverBackground {
             visible: appwin.domain.length > 0
             text: "Domain:"
             color: Theme.secondaryColor
+            font.pixelSize: (appwin.show_hash) ? Theme.fontSizeTiny : Theme.fontSizeSmall
             width: parent.width
         }
 
@@ -57,28 +58,47 @@ CoverBackground {
             text: appwin.domain
             color: Theme.primaryColor
             wrapMode: Text.NoWrap
+            font.pixelSize: (appwin.show_hash) ? Theme.fontSizeSmall : Theme.fontSizeMedium
             fontSizeMode: Text.Fit
             width: parent.width
         }
 
-        /*
         Label {
-            visible: appwin.hash.length > 0
+            visible: appwin.show_hash
             text: "Password:"
             color: Theme.secondaryColor
+            font.pixelSize: Theme.fontSizeTiny
             width: parent.width
         }
 
         Label {
-            visible: appwin.hash.length > 0
+            visible: appwin.show_hash
             text: appwin.hash
             color: Theme.primaryColor
             wrapMode: Text.NoWrap
+            font.pixelSize: Theme.fontSizeSmall
             fontSizeMode: Text.Fit
             width: parent.width
         }
-        */
 
+    }
+
+    CoverActionList {
+        enabled: appwin.hash != ""
+
+        CoverAction {
+            iconSource: "image://theme/icon-camera-flash-redeye"
+            onTriggered: {
+                appwin.show_hash = !appwin.show_hash
+            }
+        }
+
+        CoverAction {
+            iconSource: "image://theme/icon-l-copy"
+            onTriggered: {
+                appwin.activate()
+            }
+        }
     }
 
 }

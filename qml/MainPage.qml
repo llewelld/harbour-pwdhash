@@ -35,9 +35,9 @@ import "password-extractor.js" as PasswordExtractor
 import "hashed-password.js" as HashedPassword
 
 Page {
-    id: mainpage
+    id: page
 
-    function _update_hash() {
+    function update_hash() {
         var hashedPassword = "";
         if (appwin.domain && appwin.password)
             hashedPassword = HashedPassword.getHashedPassword(appwin.password, appwin.domain);
@@ -50,7 +50,7 @@ Page {
         Column {
             id: column
 
-            width: mainpage.width
+            width: page.width
             spacing: Theme.paddingLarge
             PageHeader {
                 title: "PwdHash"
@@ -70,7 +70,7 @@ Page {
 
                 onTextChanged: {
                     appwin.domain = (text) ? DomainExtractor.extractDomain(text) : "";
-                    _update_hash();
+                    update_hash();
                 }
             }
 
@@ -88,7 +88,7 @@ Page {
 
                 onTextChanged: {
                     appwin.password = (text) ? PasswordExtractor.extractPassword(text) : "";
-                    _update_hash();
+                    update_hash();
                 }
             }
 

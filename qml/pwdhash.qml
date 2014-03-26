@@ -38,6 +38,9 @@ ApplicationWindow
     property string password
     property string hash
 
-    initialPage: Component { MainPage { } }
-    cover: Qt.resolvedUrl("CoverPage.qml")
+    property bool show_hash: false
+
+    initialPage: Component { MainPage {} }
+    cover: Component { CoverPage {} }
+    //Qt.resolvedUrl("CoverPage.qml")
 }

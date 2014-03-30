@@ -36,11 +36,11 @@ CoverBackground {
     CoverPlaceholder {
         id: placeholder
         icon.source: "../../icons/hicolor/86x86/apps/harbour-pwdhash.png"
-        text: (appwin.domain) ? "" : "pwdhash"
+        text: (appwin.domain) ? "" : "PwdHash"
     }
 
     Column {
-        y: 2*Theme.paddingLarge + placeholder.icon.height + (appwin.show_hash ? 0 : Theme.paddingLarge)
+        y: 3*Theme.paddingLarge + placeholder.icon.height
         x: Theme.paddingMedium
         width: cover.width - 2*x
         spacing: Theme.paddingSmall
@@ -49,7 +49,7 @@ CoverBackground {
             visible: appwin.domain.length > 0
             text: "Domain:"
             color: Theme.secondaryColor
-            font.pixelSize: (appwin.show_hash) ? Theme.fontSizeTiny : Theme.fontSizeSmall
+            font.pixelSize: Theme.fontSizeSmall
             width: parent.width
         }
 
@@ -58,40 +58,14 @@ CoverBackground {
             text: appwin.domain
             color: Theme.primaryColor
             wrapMode: Text.NoWrap
-            font.pixelSize: (appwin.show_hash) ? Theme.fontSizeSmall : Theme.fontSizeMedium
+            font.pixelSize: Theme.fontSizeMedium
             fontSizeMode: Text.Fit
             width: parent.width
         }
-
-        Label {
-            visible: appwin.show_hash
-            text: "Password:"
-            color: Theme.secondaryColor
-            font.pixelSize: Theme.fontSizeTiny
-            width: parent.width
-        }
-
-        Label {
-            visible: appwin.show_hash
-            text: appwin.hash
-            color: Theme.primaryColor
-            wrapMode: Text.NoWrap
-            font.pixelSize: Theme.fontSizeSmall
-            fontSizeMode: Text.Fit
-            width: parent.width
-        }
-
     }
 
     CoverActionList {
         enabled: appwin.hash != ""
-
-        CoverAction {
-            iconSource: "image://theme/icon-camera-flash-redeye"
-            onTriggered: {
-                appwin.show_hash = !appwin.show_hash
-            }
-        }
 
         CoverAction {
             iconSource: "image://theme/icon-l-copy"

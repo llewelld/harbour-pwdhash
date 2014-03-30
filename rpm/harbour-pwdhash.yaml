@@ -1,10 +1,10 @@
 Name: harbour-pwdhash
 Summary: pwdhash.com as an app
-Version: 0.2
+Version: 0.3
 Release: 1
 Group: Qt/Qt
 URL: http://example.org/
-License: GPL, BSD
+License: BSD
 Sources:
 - '%{name}-%{version}.tar.bz2'
 Description: |-

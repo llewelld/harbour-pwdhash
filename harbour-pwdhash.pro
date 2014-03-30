@@ -12,7 +12,7 @@ OTHER_FILES += \
     harbour-pwdhash.png \
     qml/main.qml \
     qml/MainPage.qml \
-    qml/DomainPage.qml \
+    qml/SiteAddressHistory.qml \
     qml/CoverPage.qml \
     qml/md5.js \
     qml/domain-extractor.js \

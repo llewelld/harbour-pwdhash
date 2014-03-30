@@ -30,47 +30,35 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
-import "domain-extractor.js" as DomainExtractor
 import "password-extractor.js" as PasswordExtractor
 import "hashed-password.js" as HashedPassword
 
 Page {
-    id: page
-
-    function update_hash() {
-        var hashedPassword = "";
-        if (appwin.domain && appwin.password)
-            hashedPassword = HashedPassword.getHashedPassword(appwin.password, appwin.domain);
-        appwin.hash = hashedPassword;
-    }
-
     SilicaFlickable {
         anchors.fill: parent
+        contentWidth: parent.width
         contentHeight: column.height
+
         Column {
             id: column
-
-            width: page.width
+            width: parent.width
             spacing: Theme.paddingLarge
+
             PageHeader {
                 title: "PwdHash"
             }
 
-            TextField {
+            SiteAddressHistory {
                 id: inputSiteAddress
                 width: parent.width
-                label: "site address"
-                placeholderText: label
-                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhUrlCharactersOnly | Qt.ImhNoAutoUppercase
-                focus: true;
-
-                EnterKey.enabled: text.length > 0
-                EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: inputSitePassword.focus = true
 
                 onTextChanged: {
-                    appwin.domain = (text) ? DomainExtractor.extractDomain(text) : "";
-                    update_hash();
+                    appwin.domain = (text) ? PasswordExtractor.extractPassword(text) : ""
+                    inputHashedPassword.update()
+                }
+
+                onEnterkey: {
+                    inputSitePassword.forceActiveFocus()
                 }
             }
 
@@ -84,11 +72,11 @@ Page {
 
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: PwdHash.copy_hashed_password()
+                EnterKey.onClicked: inputHashedPassword.copy_to_clipboard()
 
                 onTextChanged: {
-                    appwin.password = (text) ? PasswordExtractor.extractPassword(text) : "";
-                    update_hash();
+                    appwin.password = (text) ? PasswordExtractor.extractPassword(text) : ""
+                    inputHashedPassword.update()
                 }
             }
 
@@ -100,12 +88,24 @@ Page {
                 color: Theme.highlightColor
                 readOnly: true
 
-                onClicked: {
-                    if (appwin.hash) { selectAll(); copy(); }
-                }
-            }
+                onClicked: copy_to_clipboard()
 
+                function copy_to_clipboard() {
+                    if (appwin.hash) {
+                        selectAll()
+                        copy()
+                        inputSiteAddress.store()
+                    }
+                }
+
+                function update() {
+                    var hashedPassword = ""
+                    if (appwin.domain && appwin.password)
+                        hashedPassword = HashedPassword.getHashedPassword(appwin.password, appwin.domain)
+                    appwin.hash = hashedPassword
+                }
+
+            }
         }
     }
-
 }

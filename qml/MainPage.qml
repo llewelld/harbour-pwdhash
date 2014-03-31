@@ -55,7 +55,7 @@ Page {
                 width: parent.width
 
                 onTextChanged: {
-                    appwin.domain = (text) ? PasswordExtractor.extractPassword(text) : ""
+                    appwin.domain = (text) ? DomainExtractor.extractDomain(text) : "";
                     inputHashedPassword.update()
                 }
 

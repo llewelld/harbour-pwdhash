@@ -139,6 +139,7 @@ Item {
             }
 
             function hide() {
+                clear();
                 listView.height = 0
             }
 

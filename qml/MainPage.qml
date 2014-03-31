@@ -72,7 +72,10 @@ Page {
 
                 EnterKey.enabled: text.length > 0
                 EnterKey.iconSource: "image://theme/icon-m-enter-next"
-                EnterKey.onClicked: inputHashedPassword.copy_to_clipboard()
+                EnterKey.onClicked: {
+                    inputHashedPassword.forceActiveFocus()
+                    inputHashedPassword.copy_to_clipboard()
+                }
 
                 onTextChanged: {
                     appwin.password = (text) ? PasswordExtractor.extractPassword(text) : ""

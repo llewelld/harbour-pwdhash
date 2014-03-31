@@ -41,6 +41,10 @@ Item {
 
     signal enterkey
 
+    function forceActiveFocus() {
+        textField.forceActiveFocus()
+    }
+
     function store() {
         listModel.store()
     }
@@ -64,7 +68,7 @@ Item {
         EnterKey.onClicked: item.enterkey()
 
         onTextChanged: listModel.update()
-        onFocusChanged: focus ? listModel.update() : listModel.hide()
+        onFocusChanged: focus ? selectAll() : listModel.hide()
     }
 
     Rectangle {

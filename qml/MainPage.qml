@@ -113,4 +113,14 @@ Page {
             }
         }
     }
+
+    function applicationActiveChanged(active) {
+        if (active) {
+            if ((inputSitePassword.text.length > 0) || (inputSiteAddress.text.length == 0))
+                inputSiteAddress.forceActiveFocus()
+            else
+                inputSitePassword.forceActiveFocus()
+        }
+    }
+
 }

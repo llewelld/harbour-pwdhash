@@ -31,8 +31,6 @@ import QtQuick 2.0
 import QtQuick.LocalStorage 2.0
 import Sailfish.Silica 1.0
 
-import "domain-extractor.js" as DomainExtractor
-
 Item {
     id: item
 
@@ -60,7 +58,6 @@ Item {
         label: "site address"
         placeholderText: label
 
-        text: appwin.domain
         inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhUrlCharactersOnly | Qt.ImhNoAutoUppercase
 
         EnterKey.enabled: text.length > 0
@@ -79,7 +76,7 @@ Item {
 
     SilicaListView {
         id: listView
-        visible: textField.activeFocus
+        visible: textField.activeFocus && height > 0
 
         width: parent.width
         height: 0
@@ -102,37 +99,54 @@ Item {
             }
 
             function update() {
-                _domain = textField.text ? DomainExtractor.extractDomain(textField.text) : ""
+                clear();
 
-                clear()
+                var a = textField.text.split('/');
+                while ((a.length > 0) && ((!a[0]) || (a[0].substr(-1) == ':')))
+                    a.shift();
+                if (a.length == 0)
+                    return;
+                a = a[0].split('.');
+                for (var i=0; i<a.length; i++)
+                    a[i] = a.slice(i).join('.');
 
                 var db = _getDatabase();
                 if (db) {
                     db.readTransaction(function(tx){
-                        var result = tx.executeSql(
+                        for (var i=0; i<a.length; i++) {
+                            var found = false;
+
+                            var result = tx.executeSql(
                                     "SELECT domain FROM domains " +
-                                    "WHERE domain LIKE ? AND domain <> ?" +
+                                    "WHERE domain LIKE ? " +
                                     "ORDER BY counter DESC " +
                                     "LIMIT ?",
-                                    [ _domain+'%', _domain, maxSearchResults ]);
+                                    [ a[i]+'%', maxSearchResults ]);
 
-                        listView.height = result.rows.length * Theme.itemSizeSmall;
-                        for (var i=0; i<result.rows.length; i++) {
-                            append({ name: result.rows.item(i).domain });
+                            for (var j=0; j<result.rows.length; j++) {
+                                var s = result.rows.item(j).domain
+                                if (s != a[i])
+                                    append({ name: s });
+                                found = true;
+                            }
+
+                            listView.height = count * Theme.itemSizeSmall;
+
+                            if (found) break;
                         }
                     });
                 }
             }
 
             function store() {
-                console.log("store2")
-                if ((textField.acceptableInput) && (_domain.length > 3)) {
+                var name = appwin.domain
+                if ((name) && (name.length > 3)) {
                     var db = _getDatabase();
                     if (db) {
                         db.transaction(function(tx){
-                            var result = tx.executeSql("UPDATE domains SET counter=counter+1 WHERE domain=?", [_domain]);
+                            var result = tx.executeSql("UPDATE domains SET counter=counter+1 WHERE domain=?", [name]);
                             if (result.rowsAffected == 0)
-                                tx.executeSql("INSERT OR IGNORE INTO domains (domain,counter) VALUES (?,?)", [_domain, 1]);
+                                tx.executeSql("INSERT OR IGNORE INTO domains (domain,counter) VALUES (?,?)", [name, 1]);
                         });
                     }
                 }

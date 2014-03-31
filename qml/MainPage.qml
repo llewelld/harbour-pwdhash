@@ -30,6 +30,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
 
+import "domain-extractor.js" as DomainExtractor
 import "password-extractor.js" as PasswordExtractor
 import "hashed-password.js" as HashedPassword
 

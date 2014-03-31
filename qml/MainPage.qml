@@ -34,6 +34,8 @@ import "password-extractor.js" as PasswordExtractor
 import "hashed-password.js" as HashedPassword
 
 Page {
+    allowedOrientations: Orientation.All
+
     SilicaFlickable {
         anchors.fill: parent
         contentWidth: parent.width

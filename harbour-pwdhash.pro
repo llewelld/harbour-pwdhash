@@ -3,7 +3,8 @@ TARGET = harbour-pwdhash
 CONFIG += sailfishapp
 
 SOURCES += \
-    src/main.cpp
+    src/main.cpp \
+    src/settings.cpp
 
 OTHER_FILES += \
     rpm/harbour-pwdhash.yaml \
@@ -18,3 +19,6 @@ OTHER_FILES += \
     qml/domain-extractor.js \
     qml/password-extractor.js \
     qml/hashed-password.js
+
+HEADERS += \
+    src/settings.h

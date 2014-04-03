@@ -21,6 +21,7 @@
 
 #include <QGuiApplication>
 #include <QQuickView>
+#include <QQmlContext>
 #include <QObject>
 #include "settings.h"
 

@@ -1,5 +1,5 @@
 TEMPLATE = subdirs
-SUBDIRS = src
+SUBDIRS = src translations
 TARGET = harbour-pwdhash
 
 OTHER_FILES += \

@@ -22,6 +22,7 @@
 #include <QGuiApplication>
 #include <QQuickView>
 #include <QQmlContext>
+#include <QTranslator>
 #include <QObject>
 #include "settings.h"
 
@@ -34,6 +35,12 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication *app = SailfishApp::application(argc, argv);
+
+    QTranslator *translator = new QTranslator();
+    QLocale locale = QLocale::system();
+    translator->load(locale, "", "",
+                     SailfishApp::pathTo(QString("translations")).toLocalFile());
+    app->installTranslator(translator);
 
     QQuickView *view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo("qml/main.qml"));

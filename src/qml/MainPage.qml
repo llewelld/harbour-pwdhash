@@ -55,6 +55,9 @@ Page {
                 id: inputSiteAddress
                 width: parent.width
 
+                label: qsTr("site address")
+                placeholderText: label
+
                 onTextChanged: {
                     appwin.domain = (text) ? DomainExtractor.extractDomain(text) : "";
                     inputHashedPassword.update()
@@ -68,8 +71,10 @@ Page {
             TextField {
                 id: inputSitePassword
                 width: parent.width
-                label: "site password"
+
+                label: qsTr("site password")
                 placeholderText: label
+
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
 
@@ -89,7 +94,10 @@ Page {
             TextField {
                 id: inputHashedPassword
                 width: parent.width
-                label:  "hashed password (tap to copy)"
+
+                label: qsTr("hashed password (tap to copy)")
+                placeholderText: ""
+
                 text: appwin.hash
                 color: Theme.highlightColor
                 readOnly: true

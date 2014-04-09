@@ -35,6 +35,8 @@ Item {
     id: item
 
     property alias text: textField.text
+    property alias label: textField.label
+    property alias placeholderText: textField.placeholderText
     property int maxSearchResults: 5
 
     signal enterkey
@@ -55,8 +57,8 @@ Item {
 
         width: parent.width
 
-        label: "site address"
-        placeholderText: label
+        //label: "site address"
+        //placeholderText: label
 
         inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhUrlCharactersOnly | Qt.ImhNoAutoUppercase
 

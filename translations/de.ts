@@ -3,6 +3,11 @@
 <TS version="2.0" language="de_DE">
 <context>
     <name></name>
+    <message id="app_name">
+        <location filename="../src/qml/MainPage.qml" line="51"/>
+        <source></source>
+        <translation>Passwort Hash</translation>
+    </message>
     <message id="address">
         <location filename="../src/qml/MainPage.qml" line="58"/>
         <source></source>

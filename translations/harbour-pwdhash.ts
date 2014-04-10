@@ -3,6 +3,11 @@
 <TS version="2.0">
 <context>
     <name></name>
+    <message id="app_name">
+        <location filename="../src/qml/MainPage.qml" line="51"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
     <message id="address">
         <location filename="../src/qml/MainPage.qml" line="58"/>
         <source></source>

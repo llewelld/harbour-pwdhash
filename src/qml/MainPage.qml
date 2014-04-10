@@ -48,7 +48,7 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: "PwdHash"
+                title: qsTrId("app_name")
             }
 
             SiteAddressHistory {

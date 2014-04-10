@@ -108,13 +108,7 @@ Page {
                     if (appwin.hash) {
                         selectAll()
                         copy()
-
                         inputSiteAddress.store()
-
-                        if (settings.setting("auto_close") == "true") {
-                            if (appwin.applicationActive)
-                                appwin.deactivate()
-                        }
                     }
                 }
 
@@ -126,18 +120,6 @@ Page {
                 }
 
             }
-
-            TextSwitch {
-                text: "auto close"
-                description: "move app to background after hash is copied"
-                checked: settings.setting("auto_close") == "true"
-                onCheckedChanged: {
-                    settings.setSetting("auto_close", checked)
-                    console.log("switched auto background behavior - " + (settings.setting("auto_close") == "true" ? "JA" : "NEIN"))
-                }
-            }
-
-
         }
     }
 

@@ -81,7 +81,7 @@ Item {
         visible: textField.activeFocus && height > 0
 
         width: parent.width
-        height: 0
+        height: listModel.count * Theme.itemSizeSmall
         anchors.top: textField.bottom
 
         model: ListModel {
@@ -131,8 +131,6 @@ Item {
                                     append({ name: s });
                                 found = true;
                             }
-
-                            listView.height = count * Theme.itemSizeSmall;
 
                             if (found) break;
                         }

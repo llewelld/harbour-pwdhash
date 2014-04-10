@@ -24,7 +24,6 @@
 #include <QQmlContext>
 #include <QTranslator>
 #include <QObject>
-#include "settings.h"
 
 #ifdef QT_QML_DEBUG
 #include <QtQuick>
@@ -45,9 +44,6 @@ int main(int argc, char *argv[])
     QQuickView *view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo("qml/main.qml"));
     view->show();
-
-    Settings *settings = new Settings();
-    view->rootContext()->setContextProperty("settings", settings);
 
     QObject::connect((QObject*)view->engine(), SIGNAL(quit()), app, SLOT(quit()));
 

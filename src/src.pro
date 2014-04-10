@@ -3,11 +3,9 @@ TARGET = harbour-pwdhash
 CONFIG += sailfishapp
 
 SOURCES = \
-    main.cpp \
-    settings.cpp
+    main.cpp
 
-HEADERS = \
-    settings.h
+HEADERS =
 
 OTHER_FILES = \
     qml/*.qml \

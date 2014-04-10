@@ -16,12 +16,6 @@ update_translations.commands += lupdate $${TRANSLATION_SOURCES} -ts $${TS_FILE} 
 QMAKE_EXTRA_TARGETS += update_translations
 PRE_TARGETDEPS += update_translations
 
-#build_translations.target = build_translations
-#build_translations.commands = lrelease -idbased ${QMAKE_FILE_IN}
-#QMAKE_EXTRA_TARGETS += build_translations
-#POST_TARGETDEPS += build_translations
-#PRE_TARGETDEPS += build_translations
-
 tsqm.input = TRANSLATIONS
 tsqm.output = ${QMAKE_FILE_BASE}.qm
 tsqm.variable_out = PRE_TARGETDEPS
@@ -38,4 +32,3 @@ INSTALLS += qm
 
 OTHER_FILES += \
     *.ts
-

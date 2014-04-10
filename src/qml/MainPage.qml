@@ -55,7 +55,7 @@ Page {
                 id: inputSiteAddress
                 width: parent.width
 
-                label: qsTr("site address")
+                label: qsTrId("address")
                 placeholderText: label
 
                 onTextChanged: {
@@ -72,7 +72,7 @@ Page {
                 id: inputSitePassword
                 width: parent.width
 
-                label: qsTr("site password")
+                label: qsTrId("password")
                 placeholderText: label
 
                 echoMode: TextInput.Password
@@ -95,7 +95,7 @@ Page {
                 id: inputHashedPassword
                 width: parent.width
 
-                label: qsTr("hashed password (tap to copy)")
+                label: qsTrId("hash")
                 placeholderText: ""
 
                 text: appwin.hash

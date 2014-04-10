@@ -47,7 +47,7 @@ CoverBackground {
 
         Label {
             visible: appwin.domain.length > 0
-            text: qsTr("Domain:")
+            text: qsTrId("domain")
             color: Theme.secondaryColor
             font.pixelSize: Theme.fontSizeSmall
             width: parent.width

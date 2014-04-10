@@ -37,9 +37,9 @@ int main(int argc, char *argv[])
     QGuiApplication *app = SailfishApp::application(argc, argv);
 
     QTranslator *translator = new QTranslator();
-    QLocale locale = QLocale::system();
-    translator->load(locale, "", "",
-                     SailfishApp::pathTo(QString("translations")).toLocalFile());
+    QString qmdir = SailfishApp::pathTo(QString("translations")).toLocalFile();
+    if(!translator->load(QLocale::system(), "", "", qmdir))
+        translator->load(QLocale(QLocale::English), "", "", qmdir);
     app->installTranslator(translator);
 
     QQuickView *view = SailfishApp::createView();

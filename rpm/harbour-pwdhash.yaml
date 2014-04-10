@@ -1,9 +1,9 @@
 Name: harbour-pwdhash
 Summary: pwdhash.com as an app
-Version: 0.3
+Version: 0.4
 Release: 1
 Group: Qt/Qt
-URL: http://example.org/
+URL: 
 License: BSD
 Sources:
 - '%{name}-%{version}.tar.bz2'
@@ -19,8 +19,9 @@ PkgConfigBR:
 Requires:
 - sailfishsilica-qt5 >= 0.10.9
 Files:
-- '%{_datadir}/icons/hicolor/86x86/apps/%{name}.png'
-- '%{_datadir}/applications/%{name}.desktop'
-- '%{_datadir}/%{name}'
-- '%{_bindir}'
+- /usr/share/harbour-pwdhash/translations
+- /usr/share/icons/hicolor/86x86/apps
+- /usr/share/applications
+- /usr/share/harbour-pwdhash
+- /usr/bin
 PkgBR: []

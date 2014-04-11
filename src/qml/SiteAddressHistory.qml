@@ -63,7 +63,7 @@ Item {
         EnterKey.onClicked: item.enterkey()
 
         onTextChanged: listModel.update()
-        onFocusChanged: focus ? selectAll() : listModel.hide()
+        onFocusChanged: if (focus) { listModel.show(); selectAll() } else { listModel.hide() }
     }
 
     Rectangle {
@@ -74,18 +74,15 @@ Item {
 
     SilicaListView {
         id: listView
-        visible: textField.activeFocus && height > 0
 
         width: parent.width
-        height: listModel.count * Theme.itemSizeSmall
+        height: 0
         anchors.top: textField.bottom
 
         model: ListModel {
             id: listModel
 
-            function update() {
-                clear();
-
+            function _update() {
                 var a = textField.text.split('/');
                 while ((a.length > 0) && ((!a[0]) || (a[0].substr(-1) == ':')))
                     a.shift();
@@ -100,17 +97,27 @@ Item {
                     if (result && result.length > 0) {
                         for (var i=0; i<result.length; i++)
                             append({ name: result[i] });
-			break;
+                        break;
                     }
                 }
 
             }
 
+            function update() {
+                clear();
+                _update();
+                listView.height = listModel.count * Theme.itemSizeSmall;
+            }
+
+            function show() {
+                update();
+                listView.visible = true;
             }
 
             function hide() {
                 clear();
-                listView.height = 0
+                listView.height = 0;
+                listView.visible = false;
             }
 
         }

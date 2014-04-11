@@ -28,8 +28,9 @@
 */
 
 import QtQuick 2.0
-import QtQuick.LocalStorage 2.0
 import Sailfish.Silica 1.0
+
+import "domain-history.js" as DomainHistory
 
 Item {
     id: item
@@ -37,16 +38,11 @@ Item {
     property alias text: textField.text
     property alias label: textField.label
     property alias placeholderText: textField.placeholderText
-    property int maxSearchResults: 5
 
     signal enterkey
 
     function forceActiveFocus() {
         textField.forceActiveFocus()
-    }
-
-    function store() {
-        listModel.store()
     }
 
     width: parent.width
@@ -87,19 +83,6 @@ Item {
         model: ListModel {
             id: listModel
 
-            property var _database
-            property var _domain
-
-            function _getDatabase() {
-                if (!_database) {
-                    _database = LocalStorage.openDatabaseSync("history", "1.0", "Description", 100000);
-                    _database.transaction(function(tx){
-                        tx.executeSql("CREATE TABLE IF NOT EXISTS domains(domain TEXT PRIMARY KEY, counter INTEGER DEFAULT 0)");
-                    });
-                }
-                return _database;
-            }
-
             function update() {
                 clear();
 
@@ -112,44 +95,17 @@ Item {
                 for (var i=0; i<a.length; i++)
                     a[i] = a.slice(i).join('.');
 
-                var db = _getDatabase();
-                if (db) {
-                    db.readTransaction(function(tx){
-                        for (var i=0; i<a.length; i++) {
-                            var found = false;
-
-                            var result = tx.executeSql(
-                                    "SELECT domain FROM domains " +
-                                    "WHERE domain LIKE ? " +
-                                    "ORDER BY counter DESC " +
-                                    "LIMIT ?",
-                                    [ a[i]+'%', maxSearchResults ]);
-
-                            for (var j=0; j<result.rows.length; j++) {
-                                var s = result.rows.item(j).domain
-                                if (s != a[i])
-                                    append({ name: s });
-                                found = true;
-                            }
-
-                            if (found) break;
-                        }
-                    });
-                }
-            }
-
-            function store() {
-                var name = appwin.domain
-                if ((name) && (name.length > 3)) {
-                    var db = _getDatabase();
-                    if (db) {
-                        db.transaction(function(tx){
-                            var result = tx.executeSql("UPDATE domains SET counter=counter+1 WHERE domain=?", [name]);
-                            if (result.rowsAffected == 0)
-                                tx.executeSql("INSERT OR IGNORE INTO domains (domain,counter) VALUES (?,?)", [name, 1]);
-                        });
+                for (var i=0; i<a.length; i++) {
+                    var result = DomainHistory.search(a[i]);
+                    if (result && result.length > 0) {
+                        for (var i=0; i<result.length; i++)
+                            append({ name: result[i] });
+			break;
                     }
                 }
+
+            }
+
             }
 
             function hide() {

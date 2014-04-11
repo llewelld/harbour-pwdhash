@@ -33,6 +33,7 @@ import Sailfish.Silica 1.0
 import "domain-extractor.js" as DomainExtractor
 import "password-extractor.js" as PasswordExtractor
 import "hashed-password.js" as HashedPassword
+import "domain-history.js" as DomainHistory
 
 Page {
     allowedOrientations: Orientation.All
@@ -108,7 +109,7 @@ Page {
                     if (appwin.hash) {
                         selectAll()
                         copy()
-                        inputSiteAddress.store()
+                        DomainHistory.store(appwin.domain)
                     }
                 }
 

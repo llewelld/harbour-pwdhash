@@ -9,4 +9,5 @@ HEADERS =
 
 OTHER_FILES = \
     qml/*.qml \
-    qml/*.js
+    qml/*.js \
+    qml/domain-history.js

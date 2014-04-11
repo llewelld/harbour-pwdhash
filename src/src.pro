@@ -10,4 +10,5 @@ HEADERS =
 OTHER_FILES = \
     qml/*.qml \
     qml/*.js \
+    qml/SettingsPage.qml \
     qml/domain-history.js

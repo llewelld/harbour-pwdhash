@@ -29,6 +29,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import org.nemomobile.configuration 1.0
 
 import "domain-extractor.js" as DomainExtractor
 import "password-extractor.js" as PasswordExtractor
@@ -42,6 +43,13 @@ Page {
         anchors.fill: parent
         contentWidth: parent.width
         contentHeight: column.height
+
+        PullDownMenu {
+            MenuItem {
+                text: qsTrId("settings")
+                onClicked: pageStack.push(Qt.resolvedUrl('SettingsPage.qml'))
+            }
+        }
 
         Column {
             id: column
@@ -110,6 +118,9 @@ Page {
                         selectAll()
                         copy()
                         DomainHistory.store(appwin.domain)
+
+                        if (autoClose.value && appwin.applicationActive)
+                             appwin.deactivate()
                     }
                 }
 
@@ -131,6 +142,12 @@ Page {
             else
                 inputSitePassword.forceActiveFocus()
         }
+    }
+
+    ConfigurationValue {
+        id: autoClose
+        key: "/apps/harbour-pwdhash/settings/auto_close"
+        defaultValue: false
     }
 
 }

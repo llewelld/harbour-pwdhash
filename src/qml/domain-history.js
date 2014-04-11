@@ -71,3 +71,11 @@ function store(domain) {
     }
 }
 
+function clear() {
+    var db = _getDatabase();
+    if (!db) return false;
+
+    db.transaction(function(tx){
+        tx.executeSql("DELETE FROM domains");
+    })
+}

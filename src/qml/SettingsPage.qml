@@ -50,7 +50,7 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTrId("app_name")
+                title: qsTrId("settings")
             }
 
             Button {

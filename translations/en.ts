@@ -5,12 +5,12 @@
     <name></name>
     <message id="settings">
         <location filename="../src/qml/MainPage.qml" line="49"/>
+        <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
-        <translation type="unfinished">Settings</translation>
+        <translation>Settings</translation>
     </message>
     <message id="app_name">
         <location filename="../src/qml/MainPage.qml" line="60"/>
-        <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
         <translation>Password Hash</translation>
     </message>
@@ -37,12 +37,12 @@
     <message id="clear_history">
         <location filename="../src/qml/SettingsPage.qml" line="58"/>
         <source></source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">clear domain history</translation>
     </message>
     <message id="auto_close">
         <location filename="../src/qml/SettingsPage.qml" line="64"/>
         <source></source>
-        <translation>auto close</translation>
+        <translation type="unfinished">auto close</translation>
     </message>
 </context>
 </TS>

@@ -5,12 +5,12 @@
     <name></name>
     <message id="settings">
         <location filename="../src/qml/MainPage.qml" line="49"/>
+        <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
-        <translation type="unfinished">Einstellungen</translation>
+        <translation>Einstellungen</translation>
     </message>
     <message id="app_name">
         <location filename="../src/qml/MainPage.qml" line="60"/>
-        <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
         <translation>Passwort Hash</translation>
     </message>
@@ -42,7 +42,7 @@
     <message id="auto_close">
         <location filename="../src/qml/SettingsPage.qml" line="64"/>
         <source></source>
-        <translation>App automatisch schließen sobald der Hash in die Zwischenablage kopiert wurde</translation>
+        <translation>automatisch schliessen</translation>
     </message>
 </context>
 </TS>

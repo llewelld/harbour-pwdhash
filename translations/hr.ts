@@ -7,12 +7,12 @@
     <name></name>
     <message id="settings">
         <location filename="../src/qml/MainPage.qml" line="49"/>
+        <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
         <translation type="unfinished"></translation>
     </message>
     <message id="app_name">
         <location filename="../src/qml/MainPage.qml" line="60"/>
-        <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
         <translation>Password Hash</translation>
     </message>

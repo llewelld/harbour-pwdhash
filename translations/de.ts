@@ -3,29 +3,34 @@
 <TS version="2.0" language="de_DE">
 <context>
     <name></name>
-    <message id="settings">
+    <message id="about">
         <location filename="../src/qml/MainPage.qml" line="49"/>
+        <source></source>
+        <translation>Über</translation>
+    </message>
+    <message id="settings">
+        <location filename="../src/qml/MainPage.qml" line="53"/>
         <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
         <translation>Einstellungen</translation>
     </message>
     <message id="app_name">
-        <location filename="../src/qml/MainPage.qml" line="60"/>
+        <location filename="../src/qml/MainPage.qml" line="64"/>
         <source></source>
         <translation>Passwort Hash</translation>
     </message>
     <message id="address">
-        <location filename="../src/qml/MainPage.qml" line="67"/>
+        <location filename="../src/qml/MainPage.qml" line="71"/>
         <source></source>
         <translation>Adresse der Webseite</translation>
     </message>
     <message id="password">
-        <location filename="../src/qml/MainPage.qml" line="84"/>
+        <location filename="../src/qml/MainPage.qml" line="88"/>
         <source></source>
         <translation>Passwort</translation>
     </message>
     <message id="hash">
-        <location filename="../src/qml/MainPage.qml" line="107"/>
+        <location filename="../src/qml/MainPage.qml" line="111"/>
         <source></source>
         <translation>Passwort Hash (zum Kopieren antippen)</translation>
     </message>

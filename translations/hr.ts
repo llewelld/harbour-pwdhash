@@ -5,29 +5,34 @@
 <TS version="2.0" language="hr">
 <context>
     <name></name>
-    <message id="settings">
+    <message id="about">
         <location filename="../src/qml/MainPage.qml" line="49"/>
+        <source></source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings">
+        <location filename="../src/qml/MainPage.qml" line="53"/>
         <location filename="../src/qml/SettingsPage.qml" line="53"/>
         <source></source>
         <translation type="unfinished"></translation>
     </message>
     <message id="app_name">
-        <location filename="../src/qml/MainPage.qml" line="60"/>
+        <location filename="../src/qml/MainPage.qml" line="64"/>
         <source></source>
         <translation>Password Hash</translation>
     </message>
     <message id="address">
-        <location filename="../src/qml/MainPage.qml" line="67"/>
+        <location filename="../src/qml/MainPage.qml" line="71"/>
         <source></source>
         <translation>Adresa stranice</translation>
     </message>
     <message id="password">
-        <location filename="../src/qml/MainPage.qml" line="84"/>
+        <location filename="../src/qml/MainPage.qml" line="88"/>
         <source></source>
         <translation>Lozinka</translation>
     </message>
     <message id="hash">
-        <location filename="../src/qml/MainPage.qml" line="107"/>
+        <location filename="../src/qml/MainPage.qml" line="111"/>
         <source></source>
         <translation type="unfinished">Hash: (Kopiraj)</translation>
     </message>

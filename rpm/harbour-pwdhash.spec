@@ -1,7 +1,7 @@
 Name:       harbour-pwdhash
 
-%define version_major 0
-%define version_minor 4
+%define version_major 1
+%define version_minor 1
 %define version_revis 0
 
 Summary:    pwdhash.com as an app

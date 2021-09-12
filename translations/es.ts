@@ -100,8 +100,69 @@
         <translation type="unfinished"></translation>
     </message>
     <message id="aboutpage-ph-about">
-        <location filename="../src/qml/AboutPage.qml" line="49"/>
+        <location filename="../src/qml/AboutPage.qml" line="50"/>
         <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-version">
+        <location filename="../src/qml/AboutPage.qml" line="63"/>
+        <source>Version: %1</source>
+        <extracomment>The %1 will be replaced by a version number</extracomment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-copyright_2014">
+        <location filename="../src/qml/AboutPage.qml" line="70"/>
+        <source>Copyright 2014 © Robert Gerlach</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-copyright_2021">
+        <location filename="../src/qml/AboutPage.qml" line="77"/>
+        <source>Copyright 2021 © David Llewellyn-Jones</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-sh-contributors">
+        <location filename="../src/qml/AboutPage.qml" line="83"/>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-stanford_copyright">
+        <location filename="../src/qml/AboutPage.qml" line="89"/>
+        <source>Includes an implementation of the Stanford PwdHash hashing algorithm. Copyright 2005 © Collin Jackson.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-cambridge_copyright">
+        <location filename="../src/qml/AboutPage.qml" line="97"/>
+        <source>Includes an implementation of the Cambridge PwdHash hashing algorithm. Copyright 2016 © David Llewellyn-Jones, Graham Rymer.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-other_contributors">
+        <location filename="../src/qml/AboutPage.qml" line="105"/>
+        <source>Other contributors: Dan Boneh, John Mitchell, Nick Miyake, Blake Ross</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-sh-license">
+        <location filename="../src/qml/AboutPage.qml" line="113"/>
+        <source>License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-license_bsd">
+        <location filename="../src/qml/AboutPage.qml" line="119"/>
+        <source>This software is distributed under the BSD License. See LICENSE for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-sh-links">
+        <location filename="../src/qml/AboutPage.qml" line="127"/>
+        <source>Links</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-bt-website_link">
+        <location filename="../src/qml/AboutPage.qml" line="135"/>
+        <source>Website</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-bt-github_link">
+        <location filename="../src/qml/AboutPage.qml" line="140"/>
+        <source>Source code</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

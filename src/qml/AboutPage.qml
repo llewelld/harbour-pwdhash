@@ -29,6 +29,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import uk.co.flypig.pwdhash 1.0
 
 Page {
     allowedOrientations: Orientation.All
@@ -49,116 +50,99 @@ Page {
                 title: qsTrId("aboutpage-ph-about")
             }
 
-            Item {
-                width: parent.width
-                height: icon.height + version.height + 20
-                clip: true
-
-                Image {
-                    id: icon
-                    source: "../../icons/hicolor/86x86/apps/harbour-pwdhash.png"
-                    anchors {
-                        top: parent.top; topMargin: 4
-                        horizontalCenter: parent.horizontalCenter
-                    }
-                    smooth: true
-                }
-
-                Label {
-                    id: version
-                    text: "Version: 0.4"
-                    font.pixelSize: Theme.fontSizeTiny
-                    anchors {
-                        top: icon.bottom; topMargin: 8
-                        horizontalCenter: parent.horizontalCenter
-                    }
-                }
+            Image {
+                id: icon
+                source: "../../icons/hicolor/86x86/apps/harbour-pwdhash.png"
+                anchors.horizontalCenter: parent.horizontalCenter
             }
 
             Label {
-                text: "Copyright 2014 © Robert Gerlach"
+                width: parent.width
+                //: The %1 will be replaced by a version number
+                //% "Version: %1"
+                text: qsTrId("aboutpage-la-version").arg(version)
+                wrapMode: Text.Wrap
             }
 
-            Column {
+            Label {
                 width: parent.width
-                spacing: Theme.paddingSmall
-                Label {
-                    text: "This software includes the JavaScript\n" +
-                          "implementation of PwdHash hashing\n" +
-                          "algorithm."
-                    font.pixelSize: Theme.fontSizeSmall
-                }
-                Label {
-                    text: "Copyright 2005 © Collin Jackson"
-                }
+                //% "Copyright 2014 © Robert Gerlach"
+                text: qsTrId("aboutpage-la-copyright_2014")
+                wrapMode: Text.Wrap
             }
 
-            Column {
+            Label {
                 width: parent.width
-                spacing: Theme.paddingSmall
-                Label {
-                    text: "Other Contributors: "
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                }
-                Label {
-                    text: "Dan Boneh, John Mitchell, Nick Miyake,\n" +
-                          "Blake Ross"
-                    color: Theme.primaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                    fontSizeMode: Text.HorizontalFit
-                    width: parent.width
-                }
+                //% "Copyright 2021 © David Llewellyn-Jones"
+                text: qsTrId("aboutpage-la-copyright_2021")
+                wrapMode: Text.Wrap
             }
 
-            Rectangle {
+            SectionHeader {
+                //% "Contributors"
+                text: qsTrId("aboutpage-sh-contributors")
+            }
+
+            Label {
                 width: parent.width
-                height: 1
-                color: Theme.rgba(Theme.secondaryColor, 0.33)
+                //% "Includes an implementation of the Stanford PwdHash hashing algorithm. Copyright 2005 © Collin Jackson."
+                text: qsTrId("aboutpage-la-stanford_copyright")
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.Wrap
+            }
+
+            Label {
+                width: parent.width
+                //% "Includes an implementation of the Cambridge PwdHash hashing algorithm. Copyright 2016 © David Llewellyn-Jones, Graham Rymer."
+                text: qsTrId("aboutpage-la-cambridge_copyright")
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.Wrap
+            }
+
+            Label {
+                width: parent.width
+                //% "Other contributors: Dan Boneh, John Mitchell, Nick Miyake, Blake Ross"
+                text: qsTrId("aboutpage-la-other_contributors")
+                color: Theme.primaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.Wrap
+            }
+
+            SectionHeader {
+                //% "License"
+                text: qsTrId("aboutpage-sh-license")
+            }
+
+            Label {
+                width: parent.width
+                //% "This software is distributed under the BSD License. See LICENSE for details."
+                text: qsTrId("aboutpage-la-license_bsd")
+                font.pixelSize: Theme.fontSizeSmall
+                color: Theme.primaryColor
+                wrapMode: Text.Wrap
+            }
+
+            SectionHeader {
+                //% "Links"
+                text: qsTrId("aboutpage-sh-links")
+            }
+
+            Row {
+                spacing: Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            Column {
-                width: parent.width
-                spacing: Theme.paddingSmall
-                Label {
-                    text: "License:"
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
+                Button {
+                    //% "Website"
+                    text: qsTrId("aboutpage-bt-website_link")
+                    onClicked: Qt.openUrlExternally("https://openrepos.net/content/khnz/pwdhash")
                 }
-                Label {
-                    text: "This software is distributed under the\n" +
-                          "BSD License. See LICENSE for details."
-                    color: Theme.primaryColor
+                Button {
+                    //% "Source code"
+                    text: qsTrId("aboutpage-bt-github_link")
+                    onClicked: Qt.openUrlExternally("http://github.com/khnz/harbour-pwdhash")
                 }
             }
-
-            Rectangle {
-                width: parent.width
-                height: 1
-                color: Theme.rgba(Theme.secondaryColor, 0.33)
-                anchors.horizontalCenter: parent.horizontalCenter
-            }
-
-            Column {
-                width: parent.width
-                spacing: Theme.paddingSmall
-                Label {
-                    text: "The source code is available at:"
-                    color: Theme.secondaryColor
-                    font.pixelSize: Theme.fontSizeSmall
-                }
-                Label {
-                    text: "http://github.com/khnz/harbour-pwdhash"
-                    color: Theme.highlightColor
-                    fontSizeMode: Text.HorizontalFit
-                    width: parent.width
-                }
-            }
-
         }
 
         VerticalScrollDecorator {}
     }
-
 }

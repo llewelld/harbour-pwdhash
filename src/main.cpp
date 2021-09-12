@@ -24,6 +24,11 @@
 #include <QQmlContext>
 #include <QTranslator>
 #include <QObject>
+#include <QDebug>
+
+#include "digest.h"
+#include "appsettings.h"
+#include "version.h"
 
 #ifdef QT_QML_DEBUG
 #include <QtQuick>
@@ -34,6 +39,13 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication *app = SailfishApp::application(argc, argv);
+    QCoreApplication::setOrganizationDomain("www.flypig.co.uk");
+    QCoreApplication::setOrganizationName("harbour-pwdhash");
+    QCoreApplication::setApplicationName("harbour-pwdhash");
+
+    qDebug() << "Contrac version" << VERSION;
+
+    AppSettings::instantiate(app);
 
     QTranslator *translator = new QTranslator();
     QString qmdir = SailfishApp::pathTo(QString("translations")).toLocalFile();
@@ -41,11 +53,22 @@ int main(int argc, char *argv[])
         translator->load(QLocale(QLocale::English), "", "", qmdir);
     app->installTranslator(translator);
 
+    qmlRegisterType<Digest>("uk.co.flypig.pwdhash", 1, 0, "Digest");
+    qmlRegisterSingletonType<AppSettings>("uk.co.flypig.pwdhash", 1, 0, "AppSettings", AppSettings::provider);
+
     QQuickView *view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo("qml/main.qml"));
+    QQmlContext *ctxt = view->rootContext();
+    ctxt->setContextProperty("version", VERSION);
     view->show();
 
-    QObject::connect((QObject*)view->engine(), SIGNAL(quit()), app, SLOT(quit()));
+    int result = app->exec();
 
-    return app->exec();
+    qDebug() << "Execution finished:" << result;
+    delete view;
+    qDebug() << "Deleted view";
+    delete app;
+    qDebug() << "Deleted app";
+
+    return result;
 }

@@ -29,14 +29,12 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import org.nemomobile.configuration 1.0
+import uk.co.flypig.pwdhash 1.0
 
-import "domain-extractor.js" as DomainExtractor
-import "password-extractor.js" as PasswordExtractor
-import "hashed-password.js" as HashedPassword
 import "domain-history.js" as DomainHistory
 
 Page {
+    id: page
     allowedOrientations: Orientation.All
 
     SilicaFlickable {
@@ -53,26 +51,67 @@ Page {
                 title: qsTrId("settings")
             }
 
-            Button {
-                anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTrId("clear_history")
-                onClicked: DomainHistory.clear()
+            SectionHeader {
+                //% "General Settings"
+                text: qsTrId("settingspage-sh-general_settings")
             }
 
             TextSwitch {
                 width: parent.width
                 text: qsTrId("auto_close")
-                checked: autoClose.value
-                onCheckedChanged: autoClose.value = checked
+                checked: AppSettings.autoClose
+                automaticCheck: false
+                onClicked: AppSettings.autoClose = !checked
             }
 
+            Button {
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: qsTrId("clear_history")
+                //% "History cleared"
+                onClicked: Remorse.popupAction(page, qsTrId("clear_sure"), DomainHistory.clear)
+            }
+
+            SectionHeader {
+                //% "Cambridge PwdHash Settings"
+                text: qsTrId("settingspage-sh-cambridge")
+            }
+
+            TextField {
+                id: saltField
+                width: parent.width
+
+                //% "Salt"
+                label: qsTrId("settingspage-tf-salt")
+                placeholderText: label
+                text: AppSettings.camSalt
+
+                inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+
+                EnterKey.enabled: text.length > 0
+                EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                EnterKey.onClicked: iterationsField.focus = true
+
+                onTextChanged: AppSettings.camSalt = text
+            }
+
+            TextField {
+                id: iterationsField
+                width: parent.width
+
+                //% "Iterations"
+                label: qsTrId("settingspage-tf-iterations")
+                placeholderText: label
+                text: AppSettings.camIterations
+                validator: RegExpValidator { regExp: /^[0-9]*$/ }
+
+                inputMethodHints: Qt.ImhDigitsOnly
+
+                EnterKey.enabled: text.length > 0
+                EnterKey.iconSource: "image://theme/icon-m-enter-close"
+                EnterKey.onClicked: focus = false
+
+                onTextChanged: AppSettings.camIterations = parseInt(text)
+            }
         }
     }
-
-    ConfigurationValue {
-        id: autoClose
-        key: "/apps/harbour-pwdhash/settings/auto_close"
-        defaultValue: false
-    }
-
 }

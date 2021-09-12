@@ -40,6 +40,4 @@ ApplicationWindow
 
     initialPage: Component { MainPage {} }
     cover: Component { CoverPage {} }
-
-    onApplicationActiveChanged: pageStack.currentPage.applicationActiveChanged(appwin.applicationActive)
 }

@@ -48,17 +48,19 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTrId("settings")
+                //% "Settings"
+                title: qsTrId("settingspage-ph-settings")
             }
 
             SectionHeader {
-                //% "General Settings"
+                //% "General settings"
                 text: qsTrId("settingspage-sh-general_settings")
             }
 
             TextSwitch {
                 width: parent.width
-                text: qsTrId("auto_close")
+                //% "Auto close"
+                text: qsTrId("settingspage-ts-auto_close")
                 checked: AppSettings.autoClose
                 automaticCheck: false
                 onClicked: AppSettings.autoClose = !checked
@@ -66,13 +68,14 @@ Page {
 
             Button {
                 anchors.horizontalCenter: parent.horizontalCenter
-                text: qsTrId("clear_history")
+                //% "Clear history"
+                text: qsTrId("settingspage-bt-clear_history")
                 //% "History cleared"
-                onClicked: Remorse.popupAction(page, qsTrId("clear_sure"), DomainHistory.clear)
+                onClicked: Remorse.popupAction(page, qsTrId("settingspage-rt-clear_sure"), DomainHistory.clear)
             }
 
             SectionHeader {
-                //% "Cambridge PwdHash Settings"
+                //% "Cambridge PwdHash settings"
                 text: qsTrId("settingspage-sh-cambridge")
             }
 

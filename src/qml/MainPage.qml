@@ -159,11 +159,13 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTrId("about")
+                //% "About"
+                text: qsTrId("mainpage-me-about")
                 onClicked: pageStack.push(Qt.resolvedUrl('AboutPage.qml'))
             }
             MenuItem {
-                text: qsTrId("settings")
+                //% "Settings"
+                text: qsTrId("mainpage-me-settings")
                 onClicked: pageStack.push(Qt.resolvedUrl('SettingsPage.qml'))
             }
         }
@@ -174,14 +176,16 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTrId("app_name")
+                //% "Password Hash"
+                title: qsTrId("mainpage-ph-app_name")
             }
 
             SiteAddressHistory {
                 id: inputSiteAddress
                 width: parent.width
 
-                label: qsTrId("address")
+                //% "Site address"
+                label: qsTrId("mainpage-tf-site_address")
                 placeholderText: label
 
                 onTextChanged: {
@@ -198,7 +202,8 @@ Page {
                 id: inputSitePassword
                 width: parent.width - passwordStrength.width
 
-                label: qsTrId("password")
+                //% "Master password"
+                label: qsTrId("mainpage-tf-master_password")
                 placeholderText: label
 
                 echoMode: TextInput.Password
@@ -279,7 +284,8 @@ Page {
                     anchors.topMargin: Theme.paddingSmall
                     x: Theme.horizontalPageMargin
                     width: parent.width - 2 * x
-                    text: qsTrId("hash")
+                    //% "Hashed password"
+                    text: qsTrId("mainpage-la-hashed_password")
                     font.pixelSize: Theme.fontSizeSmall
                     color: parent.down ? Theme.secondaryHighlightColor : Theme.secondaryColor
                 }
@@ -288,7 +294,7 @@ Page {
             ComboBox {
                 id: inputHashType
                 //% "Hash type"
-                label: qsTrId("hash_type");
+                label: qsTrId("mainpage-la-hash_type");
                 currentIndex: AppSettings.hashType
 
                 onCurrentIndexChanged: {
@@ -298,9 +304,9 @@ Page {
 
                 menu: ContextMenu {
                     //% "Stanford"
-                    MenuItem { text: qsTrId("settingspage-cb-hashtype_stanford") }
+                    MenuItem { text: qsTrId("settingspage-me-hashtype_stanford") }
                     //% "Cambridge"
-                    MenuItem { text: qsTrId("settingspage-cb-hashtype_cambridge") }
+                    MenuItem { text: qsTrId("settingspage-me-hashtype_cambridge") }
                 }
             }
         }

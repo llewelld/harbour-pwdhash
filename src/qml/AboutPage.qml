@@ -45,7 +45,8 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qs_TrId("about")
+                //% "About"
+                title: qsTrId("aboutpage-ph-about")
             }
 
             Item {

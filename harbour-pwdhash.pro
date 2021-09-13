@@ -21,7 +21,8 @@ HEADERS += \
 
 DISTFILES += \
     qml/*.qml \
-    qml/*.js
+    qml/*.js \
+    translations/*.ts
 
 OTHER_FILES += \
     rpm/$${TARGET}.spec

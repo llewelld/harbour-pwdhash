@@ -15,6 +15,7 @@ BuildRequires:  pkgconfig(sailfishapp) >= 0.0.10
 BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
+BuildRequires:  pkgconfig(openssl)
 
 %description
 Manage a different password for each website you use,

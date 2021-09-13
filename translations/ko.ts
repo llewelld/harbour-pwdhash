@@ -136,33 +136,38 @@
         <source>Includes an implementation of the Cambridge PwdHash hashing algorithm. Copyright 2016 © David Llewellyn-Jones, Graham Rymer.</source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="aboutpage-la-other_contributors">
+    <message id="aboutpage-la-zxcvbn-c-copyright">
         <location filename="../src/qml/AboutPage.qml" line="105"/>
+        <source>Includes Tony Evans&apos;s MIT-licesed implementation of the zxcvbn password strength algorithm. Copyright © 2015-2017 Tony Evans.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="aboutpage-la-other_contributors">
+        <location filename="../src/qml/AboutPage.qml" line="113"/>
         <source>Other contributors: Dan Boneh, John Mitchell, Nick Miyake, Blake Ross</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="aboutpage-sh-license">
-        <location filename="../src/qml/AboutPage.qml" line="113"/>
+        <location filename="../src/qml/AboutPage.qml" line="121"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="aboutpage-la-license_bsd">
-        <location filename="../src/qml/AboutPage.qml" line="119"/>
+        <location filename="../src/qml/AboutPage.qml" line="127"/>
         <source>This software is distributed under the BSD License. See LICENSE for details.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="aboutpage-sh-links">
-        <location filename="../src/qml/AboutPage.qml" line="127"/>
+        <location filename="../src/qml/AboutPage.qml" line="135"/>
         <source>Links</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="aboutpage-bt-website_link">
-        <location filename="../src/qml/AboutPage.qml" line="135"/>
+        <location filename="../src/qml/AboutPage.qml" line="143"/>
         <source>Website</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="aboutpage-bt-github_link">
-        <location filename="../src/qml/AboutPage.qml" line="140"/>
+        <location filename="../src/qml/AboutPage.qml" line="148"/>
         <source>Source code</source>
         <translation type="unfinished"></translation>
     </message>

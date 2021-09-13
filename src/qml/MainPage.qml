@@ -29,15 +29,128 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
-import org.nemomobile.configuration 1.0
+import uk.co.flypig.pwdhash 1.0
 
-import "domain-extractor.js" as DomainExtractor
-import "password-extractor.js" as PasswordExtractor
 import "hashed-password.js" as HashedPassword
 import "domain-history.js" as DomainHistory
 
 Page {
+    id: page
     allowedOrientations: Orientation.All
+
+    property bool nonalphanumeric
+    property int size
+    property string randomstring
+    property int stabilised
+    property bool delayedCopy
+    property bool updateWhenActive
+    property int passwordStrength: digest.checkPasswordStrength(appwin.password)
+
+    function copyPassword() {
+        if (appwin.hash) {
+            if (digest.running) {
+                delayedCopy = true
+            }
+            else {
+                Clipboard.text = appwin.hash
+                DomainHistory.store(appwin.domain)
+                if (!AppSettings.autoClose && appwin.applicationActive) {
+                    //% "Copied"
+                    Notices.show(qsTrId("mainpage-nt-password_copied"), Notice.Short, Notice.Bottom)
+                }
+            }
+            if (AppSettings.autoClose && appwin.applicationActive) {
+                appwin.deactivate()
+            }
+        }
+    }
+
+    function updateRequired() {
+        if (status == PageStatus.Active) {
+            updateWhenActive = false
+            updateHash()
+        }
+        else {
+            updateWhenActive = true
+        }
+    }
+
+    onStatusChanged: {
+        if (status == PageStatus.Active && updateWhenActive) {
+            updateWhenActive = false
+            updateHash()
+        }
+    }
+
+    Connections {
+        target: AppSettings
+        onCamSaltChanged: updateRequired()
+        onCamIterationsChanged: updateRequired()
+    }
+
+    Digest {
+        id: digest
+
+        onResultChanged: {
+          var constrained = HashedPassword.applyConstraints(result, size, nonalphanumeric);
+          appwin.hash = constrained
+          if (delayedCopy) {
+              delayedCopy = false
+              copyPassword()
+          }
+        }
+        onRunningChanged: {
+          if (!running) {
+            stabilise.start()
+          }
+        }
+    }
+
+    Timer {
+        interval: 50
+        repeat: true
+        running: digest.running || stabilised < size
+        onTriggered: {
+            var characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456+/'
+            var string = ""
+            for (var count = 0; count < size; count++) {
+                var pos = Math.floor(Math.random() * characters.length)
+                string += characters[pos]
+            }
+            randomstring = string
+        }
+    }
+
+    NumberAnimation on stabilised {
+      id: stabilise
+      to: size
+      duration: size * 100
+      easing.type: Easing.Linear
+    }
+
+    function updateHash() {
+        var hashedPassword = ""
+        if (appwin.domain && appwin.password) {
+            stabilised = 0
+            stabilise.stop()
+            size = appwin.password.length + 2
+            if (inputHashType.currentIndex == 0) {
+                digest.md5Input(appwin.password, appwin.domain)
+            }
+            else {
+                var password = appwin.password + AppSettings.camSalt
+                digest.pbkdf2Input(password, appwin.domain, AppSettings.camIterations, (2 * size / 3) + 16)
+            }
+
+            nonalphanumeric = appwin.password.match(/\W/) !== null;
+        }
+        else {
+            size = 0
+            appwin.hash = ""
+            stabilised = 0;
+            stabilise.stop()
+        }
+    }
 
     SilicaFlickable {
         anchors.fill: parent
@@ -46,11 +159,13 @@ Page {
 
         PullDownMenu {
             MenuItem {
-                text: qsTrId("about")
+                //% "About"
+                text: qsTrId("mainpage-me-about")
                 onClicked: pageStack.push(Qt.resolvedUrl('AboutPage.qml'))
             }
             MenuItem {
-                text: qsTrId("settings")
+                //% "Settings"
+                text: qsTrId("mainpage-me-settings")
                 onClicked: pageStack.push(Qt.resolvedUrl('SettingsPage.qml'))
             }
         }
@@ -61,19 +176,21 @@ Page {
             spacing: Theme.paddingLarge
 
             PageHeader {
-                title: qsTrId("app_name")
+                //% "Password Hash"
+                title: qsTrId("mainpage-ph-app_name")
             }
 
             SiteAddressHistory {
                 id: inputSiteAddress
                 width: parent.width
 
-                label: qsTrId("address")
+                //% "Site address"
+                label: qsTrId("mainpage-tf-site_address")
                 placeholderText: label
 
                 onTextChanged: {
-                    appwin.domain = (text) ? DomainExtractor.extractDomain(text) : "";
-                    inputHashedPassword.update()
+                    appwin.domain = (text) ? HashedPassword.extractDomain(text) : "";
+                    updateHash()
                 }
 
                 onEnterkey: {
@@ -83,58 +200,114 @@ Page {
 
             TextField {
                 id: inputSitePassword
-                width: parent.width
+                width: parent.width - passwordStrength.width
 
-                label: qsTrId("password")
+                //% "Master password"
+                label: qsTrId("mainpage-tf-master_password")
                 placeholderText: label
 
                 echoMode: TextInput.Password
                 inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
 
                 EnterKey.enabled: text.length > 0
-                EnterKey.iconSource: "image://theme/icon-m-enter-next"
+                EnterKey.iconSource: "image://theme/icon-m-clipboard"
                 EnterKey.onClicked: {
-                    inputHashedPassword.forceActiveFocus()
-                    inputHashedPassword.copy_to_clipboard()
+                    focus = false
+                    copyPassword()
                 }
 
                 onTextChanged: {
-                    appwin.password = (text) ? PasswordExtractor.extractPassword(text) : ""
-                    inputHashedPassword.update()
+                    appwin.password = (text) ? HashedPassword.extractPassword(text) : ""
+                    updateHash()
+                }
+
+                rightItem: GlassItem {
+                    height: Theme.iconSizeSmallPlus
+                    width: height
+                    color: {
+                        var colours = ["darkred", "red", "orange", "orange", "lawngreen"]
+                        return appwin.password ? colours[passwordStrength] : "transparent"
+                    }
+                    Behavior on color {
+                        ColorAnimation { duration: 250 }
+                    }
+                    falloffRadius: 0.25
+                    radius: 0.15
+                    cache: false
                 }
             }
 
-            TextField {
-                id: inputHashedPassword
+            MouseArea {
                 width: parent.width
+                height: hashText.height + hashLabel.height + 3 * Theme.paddingSmall
+                property bool down: pressed && containsMouse && !pressDelayTimer.running
+                opacity: hashText.text ? 1 : 0
+                Behavior on opacity { FadeAnimator {}}
 
-                label: qsTrId("hash")
-                placeholderText: ""
+                onClicked: copyPassword()
 
-                text: appwin.hash
-                color: Theme.highlightColor
-                readOnly: true
-
-                onClicked: copy_to_clipboard()
-
-                function copy_to_clipboard() {
-                    if (appwin.hash) {
-                        selectAll()
-                        copy()
-                        DomainHistory.store(appwin.domain)
-
-                        if (autoClose.value && appwin.applicationActive)
-                             appwin.deactivate()
-                    }
+                Timer {
+                    id: pressDelayTimer
+                    interval: 48
+                    running: parent.pressed
                 }
 
-                function update() {
-                    var hashedPassword = ""
-                    if (appwin.domain && appwin.password)
-                        hashedPassword = HashedPassword.getHashedPassword(appwin.password, appwin.domain)
-                    appwin.hash = hashedPassword
+                Label {
+                    id: hashText
+                    y: Theme.paddingSmall
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - 2 * x - rightItem.width
+                    color: Theme.highlightColor
+                    font.family: "Monospace"
+                    truncationMode: TruncationMode.Fade
+
+                    text: appwin.hash.substring(0, stabilised) + randomstring.substring(stabilised, size)
                 }
 
+                IconButton {
+                    id: rightItem
+                    width: icon.width + 2 * Theme.paddingMedium
+                    height: icon.height
+                    anchors.verticalCenter: hashText.verticalCenter
+                    anchors.right: parent.right
+                    anchors.rightMargin: Theme.horizontalPageMargin
+                    highlighted: down || parent.down
+
+                    onClicked: copyPassword()
+
+                    icon.source: "image://theme/icon-s-clipboard"
+                }
+
+                Label {
+                    id: hashLabel
+                    anchors.top: hashText.bottom
+                    anchors.topMargin: Theme.paddingSmall
+                    x: Theme.horizontalPageMargin
+                    width: parent.width - 2 * x
+                    //% "Hashed password"
+                    text: qsTrId("mainpage-la-hashed_password")
+                    font.pixelSize: Theme.fontSizeSmall
+                    color: parent.down ? Theme.secondaryHighlightColor : Theme.secondaryColor
+                }
+            }
+
+            ComboBox {
+                id: inputHashType
+                //% "Hash type"
+                label: qsTrId("mainpage-la-hash_type");
+                currentIndex: AppSettings.hashType
+
+                onCurrentIndexChanged: {
+                    AppSettings.hashType = currentIndex
+                    updateHash()
+                }
+
+                menu: ContextMenu {
+                    //% "Stanford"
+                    MenuItem { text: qsTrId("settingspage-me-hashtype_stanford") }
+                    //% "Cambridge"
+                    MenuItem { text: qsTrId("settingspage-me-hashtype_cambridge") }
+                }
             }
         }
     }
@@ -147,11 +320,4 @@ Page {
                 inputSitePassword.forceActiveFocus()
         }
     }
-
-    ConfigurationValue {
-        id: autoClose
-        key: "/apps/harbour-pwdhash/settings/auto_close"
-        defaultValue: false
-    }
-
 }

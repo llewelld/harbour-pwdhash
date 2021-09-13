@@ -53,9 +53,6 @@ Item {
 
         width: parent.width
 
-        //label: "site address"
-        //placeholderText: label
-
         inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhUrlCharactersOnly | Qt.ImhNoAutoUppercase
 
         EnterKey.enabled: text.length > 0

@@ -47,12 +47,6 @@ int main(int argc, char *argv[])
 
     AppSettings::instantiate(app);
 
-    QTranslator *translator = new QTranslator();
-    QString qmdir = SailfishApp::pathTo(QString("translations")).toLocalFile();
-    if(!translator->load(QLocale::system(), "", "", qmdir))
-        translator->load(QLocale(QLocale::English), "", "", qmdir);
-    app->installTranslator(translator);
-
     qmlRegisterType<Digest>("uk.co.flypig.pwdhash", 1, 0, "Digest");
     qmlRegisterSingletonType<AppSettings>("uk.co.flypig.pwdhash", 1, 0, "AppSettings", AppSettings::provider);
 

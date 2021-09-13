@@ -22,7 +22,7 @@
  *
  **********************************************************************************/
 
-#include <zxcvbn.h>
+#include "zxcvbn.h"
 #include <ctype.h>
 #include <string.h>
 #include <stdint.h>

@@ -21,7 +21,7 @@ Manage a different password for each website you use,
 without the need to store them in a password manager.
 
 %prep
-%setup -q -n %{name}-%{version}
+%autosetup -N -n %{name}-%{version}
 
 %build
 %qmake5 DEFINES+='VERSION_MAJOR=%{version_major}' \
@@ -34,11 +34,14 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 %qmake5_install
+desktop-file-install --delete-original       \
+  --dir %{buildroot}%{_datadir}/applications             \
+   %{buildroot}%{_datadir}/applications/*.desktop
 
 %files
 %defattr(-,root,root,-)
-/usr/share/harbour-pwdhash/translations
-/usr/share/icons/hicolor/86x86/apps
-/usr/share/applications
-/usr/share/harbour-pwdhash
-/usr/bin
+%{_bindir}
+%{_datadir}/%{name}
+%{_datadir}/applications/%{name}.desktop
+%{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_datadir}/%{name}/translations

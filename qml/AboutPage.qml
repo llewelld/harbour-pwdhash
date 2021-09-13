@@ -101,6 +101,14 @@ Page {
 
             Label {
                 width: parent.width
+                //% "Includes Tony Evans's MIT-licesed implementation of the zxcvbn password strength algorithm. Copyright © 2015-2017 Tony Evans."
+                text: qsTrId("aboutpage-la-zxcvbn-c-copyright")
+                font.pixelSize: Theme.fontSizeSmall
+                wrapMode: Text.Wrap
+            }
+
+            Label {
+                width: parent.width
                 //% "Other contributors: Dan Boneh, John Mitchell, Nick Miyake, Blake Ross"
                 text: qsTrId("aboutpage-la-other_contributors")
                 color: Theme.primaryColor

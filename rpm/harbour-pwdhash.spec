@@ -16,6 +16,7 @@ BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(Qt5Qml)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(openssl)
+BuildRequires:  pkgconfig(mlite5)
 
 %description
 Manage a different password for each website you use,

@@ -104,7 +104,7 @@ CoverBackground {
         CoverAction {
             iconSource: AppSettings.getImageUrl("icon-cover-action-clipboard")
             onTriggered: {
-                Clipboard.text = appwin.hash
+                appwin.mainPage.copyPassword()
             }
         }
     }

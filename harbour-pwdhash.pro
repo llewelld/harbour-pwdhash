@@ -22,12 +22,13 @@ HEADERS += \
 DISTFILES += \
     qml/*.qml \
     qml/*.js \
-    translations/*.ts
+    translations/*.ts \
+    qml/images
 
 OTHER_FILES += \
     rpm/$${TARGET}.spec
 
-SAILFISHAPP_ICONS = 86x86
+SAILFISHAPP_ICONS = 86x86 256x256 172x172 128x128 108x108
 
 CONFIG += sailfishapp_i18n
 CONFIG += sailfishapp_i18n_idbased

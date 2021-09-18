@@ -38,6 +38,7 @@ Page {
         anchors.fill: parent
         contentWidth: parent.width
         contentHeight: column.height
+        bottomMargin: Theme.paddingLarge
 
         Column {
             id: column
@@ -51,9 +52,12 @@ Page {
             }
 
             Image {
-                id: icon
-                source: "../../icons/hicolor/86x86/apps/harbour-pwdhash.png"
+                anchors.topMargin: Theme.paddingLarge
                 anchors.horizontalCenter: parent.horizontalCenter
+                source  : AppSettings.getImageUrl("pwdhash-title")
+                width: parent.width - (2 * Theme.horizontalPageMargin)
+                height: Theme.iconSizeExtraLarge
+                fillMode: Image.PreserveAspectFit
             }
 
             Label {

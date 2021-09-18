@@ -29,39 +29,64 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import uk.co.flypig.pwdhash 1.0
 
 CoverBackground {
     id: cover
 
-    CoverPlaceholder {
-        id: placeholder
-        icon.source: "../../icons/hicolor/86x86/apps/harbour-pwdhash.png"
-        text: (appwin.domain) ? "" : "PwdHash"
+    Image {
+        id: background
+        visible: true
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        height: sourceSize.height * width / sourceSize.width
+        source: AppSettings.getImageUrl("cover-background")
+        opacity: 0.1
     }
 
     Column {
-        y: 3*Theme.paddingLarge + placeholder.icon.height
-        x: Theme.paddingMedium
-        width: cover.width - 2*x
-        spacing: Theme.paddingSmall
+        x: Theme.paddingLarge
+        y: Theme.paddingLarge
+        width: cover.width - 2 * x
+        spacing: Theme.paddingLarge
 
         Label {
-            visible: appwin.domain.length > 0
-            //% "Domain"
-            text: qsTrId("cover-la-domain")
-            color: Theme.secondaryColor
-            font.pixelSize: Theme.fontSizeSmall
+            color: Theme.highlightColor
+            //% "PwdHash"
+            text: qsTrId("cover_la_title")
+            fontSizeMode: Text.VerticalFit
+            font.pixelSize: Theme.fontSizeLarge
+            wrapMode: Text.Wrap
             width: parent.width
+            elide: Text.ElideNone
+            maximumLineCount: 3
         }
 
-        Label {
-            visible: appwin.domain.length > 0
-            text: appwin.domain
-            color: Theme.primaryColor
-            wrapMode: Text.NoWrap
-            font.pixelSize: Theme.fontSizeMedium
-            fontSizeMode: Text.Fit
+        Column {
             width: parent.width
+            spacing: Theme.paddingSmall
+
+            Label {
+                visible: appwin.domain.length > 0
+                //% "Domain"
+                text: qsTrId("cover-la-domain")
+                color: Theme.secondaryColor
+                font.pixelSize: Theme.fontSizeSmall
+                width: parent.width
+                maximumLineCount: 4
+            }
+
+            Label {
+                visible: appwin.domain.length > 0
+                text: appwin.domain.split('.').join('.\n')
+                color: Theme.primaryColor
+                wrapMode: Text.Wrap
+                font.pixelSize: Theme.fontSizeMedium
+                width: parent.width
+            }
         }
     }
 
@@ -69,11 +94,30 @@ CoverBackground {
         enabled: appwin.hash != ""
 
         CoverAction {
-            iconSource: "image://theme/icon-l-copy"
+            iconSource: AppSettings.getImageUrl("icon-cover-action-hash")
+            onTriggered: {
+                appwin.mainPage.pasteDomain = true
+                activate()
+            }
+        }
+
+        CoverAction {
+            iconSource: AppSettings.getImageUrl("icon-cover-action-clipboard")
             onTriggered: {
                 Clipboard.text = appwin.hash
             }
         }
     }
 
+    CoverActionList {
+        enabled: appwin.hash == ""
+
+        CoverAction {
+            iconSource: AppSettings.getImageUrl("icon-cover-action-hash")
+            onTriggered: {
+                appwin.mainPage.pasteDomain = true
+                activate()
+            }
+        }
+    }
 }

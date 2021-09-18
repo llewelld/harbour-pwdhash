@@ -61,6 +61,16 @@ Item {
 
         onTextChanged: listModel.update()
         onFocusChanged: if (focus) { listModel.show(); selectAll() } else { listModel.hide() }
+
+        rightItem: IconButton {
+            onClicked: textField.text = ""
+
+            width: icon.width
+            height: icon.height
+            icon.source: "image://theme/icon-splus-clear"
+            opacity: textField.text.length > 0 ? 1.0 : 0.0
+            Behavior on opacity { FadeAnimation {} }
+        }
     }
 
     Rectangle {

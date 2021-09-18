@@ -32,6 +32,7 @@ SAILFISHAPP_ICONS = 86x86 256x256 172x172 128x128 108x108
 
 CONFIG += sailfishapp_i18n
 CONFIG += sailfishapp_i18n_idbased
+CONFIG += sailfishapp_i18n_unfinished
 
 TRANSLATIONS += \
     translations/harbour-pwdhash.ts \

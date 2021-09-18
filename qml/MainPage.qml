@@ -45,6 +45,19 @@ Page {
     property bool delayedCopy
     property bool updateWhenActive
     property int passwordStrength: digest.checkPasswordStrength(appwin.password)
+    property bool pasteDomain
+
+    Connections {
+        target: Qt.application
+        onActiveChanged: {
+            if (Qt.application.active && pasteDomain) {
+                pasteDomain = false
+                if (Clipboard.text.indexOf('.') >= 0) {
+                    inputSiteAddress.text = HashedPassword.extractDomain(Clipboard.text)
+                }
+            }
+        }
+    }
 
     function copyPassword() {
         if (appwin.hash) {

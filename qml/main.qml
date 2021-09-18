@@ -34,10 +34,16 @@ ApplicationWindow
 {
     id: appwin
 
+    property Page mainPage
     property string domain
     property string password
     property string hash
 
-    initialPage: Component { MainPage {} }
+    initialPage: Component {
+        MainPage {
+            id: page
+            Component.onCompleted: appwin.mainPage = page
+        }
+    }
     cover: Component { CoverPage {} }
 }
